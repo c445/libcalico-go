@@ -72,6 +72,8 @@ func (b *allocationBlock) autoAssign(
 	// Walk the allocations until we find enough addresses.
 	ordinals := []int{}
 	for len(b.Unallocated) > 0 && len(ordinals) < num {
+		for ; b.Unallocated[0] == 0 || b.Unallocated[0] == 1 || b.Unallocated[0] == 255; b.Unallocated = b.Unallocated[1:] {
+		}
 		ordinals = append(ordinals, b.Unallocated[0])
 		b.Unallocated = b.Unallocated[1:]
 	}
